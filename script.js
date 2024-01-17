@@ -171,3 +171,18 @@ rest2.owner &&= 'anonymous';
 
 console.log(rest1);
 console.log(rest2);
+
+// For loop
+const fullMenu = [...restaurant.starterMenu, restaurant.mainMenu];
+// for of loop
+for (const item of fullMenu) {
+  console.log(item);
+}
+// for of loop with idexes of each item
+for (const item of fullMenu.entries()) {
+  console.log(item);
+}
+// for of loop with idexes of each item + destructuring for an easy use
+for (const [index, item] of fullMenu.entries()) {
+  console.log(index, item);
+}
