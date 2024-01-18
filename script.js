@@ -32,6 +32,11 @@ const restaurant = {
   },
 };
 
+// looping through object entries
+for (const [day, { open, close }] of Object.entries(restaurant.openingHours)) {
+  console.log(`on ${day} we open at ${open} and close at ${close}`);
+}
+
 // destructuring array:
 const arr = [1, 2, 3];
 const [x, y, z] = arr;
@@ -185,4 +190,23 @@ for (const item of fullMenu.entries()) {
 // for of loop with idexes of each item + destructuring for an easy use
 for (const [index, item] of fullMenu.entries()) {
   console.log(index, item);
+}
+
+// optional chaining
+// since there is no mon property it will break the chain and return undefined
+const openHours = restaurant.openingHours.mon?.open;
+console.log(openHours);
+
+const days = ['mon', 'tue', 'wed', 'thu', 'fri'];
+for (const day of days) {
+  console.log(
+    restaurant.openingHours[day]?.open ?? `Restarant is closed on ${day}`
+  );
+}
+
+console.log(days[1]?.[0]);
+
+// looping over object property names
+for (const property of Object.keys(restaurant)) {
+  console.log(property);
 }
