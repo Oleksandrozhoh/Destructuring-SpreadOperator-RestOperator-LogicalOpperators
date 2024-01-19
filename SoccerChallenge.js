@@ -109,10 +109,17 @@ team1 > team2 && console.log(`team2 is more likly to win`);
 // 1. Loop over the game.scored array and print each player name to the console,
 // along with the goal number (Example: "Goal 1: Lewandowski")
 for (const [goalNumber, playerName] of Object.entries(game.scored)) {
-  console.log(`Goal ${goalNumber} : ${playerName} 🎉🎉😍`);
+  console.log(`Goal ${goalNumber + 1} : ${playerName} 🎉🎉😍`);
 }
 // 2. Use a loop to calculate the average odd and log it to the console (We already
 // studied how to calculate averages, you can go check if you don't remember)
+let sum = 0;
+for (const eachOdd of Object.values(game.odds)) {
+  sum += Number(eachOdd);
+}
+const average = sum / Object.entries(game.odds).length;
+console.log('average odd is ' + average);
+
 // 3. Print the 3 odds to the console, but in a nice formatted way, exactly like this:
 // Odd of victory Bayern Munich: 1.33
 // Odd of draw: 3.25
@@ -122,6 +129,13 @@ for (const [goalNumber, playerName] of Object.entries(game.scored)) {
 // same property names
 // �
 // �
+for (const [team, odd] of Object.entries(game.odds)) {
+  console.log(
+    `Odds of ${team === 'x' ? 'draw' : 'victory'} ${
+      team != 'x' ? game[team] : ''
+    }: ${odd}`
+  );
+}
 // 4. Bonus: Create an object called 'scorers' which contains the names of the
 // players who scored as properties, and the number of goals as the value. In this
 // game, it will look like this:
@@ -130,3 +144,59 @@ for (const [goalNumber, playerName] of Object.entries(game.scored)) {
 // Gnarby: 1,
 // Hummels: 1,
 // Lewandowski: 2
+const scores = {};
+const arr = [];
+for (const playerScored of game.scored) {
+  arr.includes(playerScored)
+    ? (scores[playerScored] += 1)
+    : (scores[playerScored] = 1);
+  arr.push(playerScored);
+  console.log(arr);
+}
+
+console.log(scores);
+
+// SET
+const ordersSet = new Set(['pizza', 'lasania', 'bread', 'pizza', 'lasania']);
+console.log(ordersSet);
+console.log(ordersSet.size);
+console.log(ordersSet.has('pizza'));
+console.log(ordersSet.add('ise cream'));
+console.log(ordersSet.delete('pizza')); // returns true or false if the element was found and deleted or now
+console.log(ordersSet.clear()); // remove all the elements from a set
+
+// usecase for a set
+const array = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5];
+const uniqueArray = [...new Set(array)];
+console.log(uniqueArray);
+
+// MAP
+const rest = new Map();
+rest.set('name', 'Spirit Elefant');
+rest.set(1, 'Spirit Elefant 1');
+rest.set(2, 'Spirit Elefant 2').set(3, 'Alice&Friends'); // set method returns a map so we can apply set method again
+console.log(rest);
+console.log(rest.has(1));
+console.log(rest.delete(1));
+
+const question = new Map([
+  ['question', 'What is the best programming language in the world?'],
+  [1, 'C'],
+  [2, 'Java'],
+  [3, 'JavaScript'],
+  ['correct', 3],
+  [true, 'Correct 🎉🎉🎉'],
+  [false, 'Try again!🤷‍♀️🤷‍♀️🤦‍♂️'],
+]);
+
+console.log(question.get('question'));
+for (const [key, value] of question) {
+  typeof key === 'number' && console.log(`Answer ${key}: ${value}`);
+}
+
+// const answer = Number(prompt('what would be your answer???'));
+// console.log(answer);
+// console.log(question.get(answer === question.get('correct')));
+
+const arrayFromMap = [...question];
+console.log(arrayFromMap);
