@@ -35,9 +35,9 @@ document.querySelector('button').addEventListener('click', function () {
   const corectFormat = function (testData) {
     const arrayOfWords = testData.split(' ').filter(value => value);
     const arrayOfFormatedWords = [];
-    let checkBoxes = '✔';
-    for (const eachWord of arrayOfWords) {
-      const lowerCaseWord = eachWord.toLowerCase();
+    let padCount = 24;
+    for (const [index, word] of arrayOfWords.entries()) {
+      const lowerCaseWord = word.toLowerCase().trim();
       const formatedWord =
         lowerCaseWord.split('_')[0] +
         lowerCaseWord
@@ -46,9 +46,10 @@ document.querySelector('button').addEventListener('click', function () {
             lowerCaseWord.split('_')[1].slice(0, 1),
             lowerCaseWord.split('_')[1].slice(0, 1).toUpperCase()
           );
-      arrayOfFormatedWords.push(formatedWord.padEnd(25, ' ') + checkBoxes);
-      console.log((formatedWord.padEnd(25, ' ') + checkBoxes).length);
-      checkBoxes += '✔';
+      arrayOfFormatedWords.push(
+        `\n${formatedWord.padEnd(20)}${'✅'.repeat(index + 1)}`
+      );
+      padCount = 25;
     }
     return arrayOfFormatedWords.join('');
   };
