@@ -210,3 +210,51 @@ console.log(days[1]?.[0]);
 for (const property of Object.keys(restaurant)) {
   console.log(property);
 }
+
+// STRINGS
+const word = 'Banana';
+
+// print string letters
+console.log(word[0]);
+
+// length of a string
+console.log(word.length);
+
+// index of a character
+console.log(word.indexOf('a'));
+console.log(word.indexOf('ana'));
+console.log(word.lastIndexOf('a'));
+
+// substrings
+console.log(word.slice(2));
+console.log(word.slice(-2)); // negative index will count for the begining of the string
+
+const string = 'I like JS , JS is an awesome language';
+console.log(string.replaceAll('JS', 'Java'));
+
+const myName = 'oleksandr ozhoh';
+
+const capitalizeName = function (nameString) {
+  const nameArr = nameString.split(' ');
+  for (let i = 0; i < nameArr.length; i++) {
+    nameArr[i] =
+      nameArr[i].slice(0, 1).toUpperCase() + nameArr[i].slice(1).toLowerCase();
+  }
+  const nameStr = nameArr.join(' ');
+  return nameStr;
+};
+
+console.log(capitalizeName(myName));
+
+// will add characters at the beginning of the string to match the specified length
+console.log(word.padStart(20, 'xolol'));
+
+const maskCreditCardNumber = function (cardNumber) {
+  return cardNumber.slice(-4).padStart(cardNumber.length, 'X');
+};
+
+console.log(maskCreditCardNumber(`1234567891234567`));
+
+// repeat method
+const message2 = 'This is my message';
+console.log(message2.repeat(10));
